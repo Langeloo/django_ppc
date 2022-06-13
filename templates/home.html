@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Home</h1>
+    <br>
+    <p>Nombre de usuario: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Nombres: {{ user.first_name }}</p>
+    <p>Apellidos: {{ user.last_name }}</p>
+    <p>Contraseña: {{ user.password }}</p>
+    <a href="{% url 'prog_auth:logout' %}">Logout</a>
+    <br><br>
+    <table style="width:100%">
+        <thead>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Nombre de usuario</th>
+            <th>Contraseña</th>
+        </thead>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.password }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesion</title>
+    <link href='{% static "login.css" %}' rel="stylesheet" />
+</head>
+
+<body>
+        <section>
+            {% if message %}
+            <div class="alert alert-danger">
+                <h2>{{ message }}</h2>
+            </div>
+            {% endif %}
+            <div class="container">
+                <div class="user signinBx">
+                    <div class="imgBx"><img
+                            src="https://raw.githubusercontent.com/WoojinFive/CSS_Playground/master/Responsive%20Login%20and%20Registration%20Form/img1.jpg"
+                            alt="" /></div>
+                    <div class="formBx">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <h2>Iniciar Sesion</h2>
+                            <input type="text" name="log_username" placeholder="Nombre usuario" />
+                            <input type="password" name="log_password" placeholder="Contraseña" />
+                            <input type="submit" value="Ingresar" name="login" />
+                            <p class="signup">
+                                No tienes una cuenta?
+                                <a href="#" onclick="toggleForm();">Registrar.</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                <div class="user signupBx">
+                    <div class="formBx">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <h2>Crear cuenta</h2>
+                            <input type="text" name="reg_username" placeholder="Nombre usuario" />
+                            <input type="email" name="reg_email" placeholder="Email" />
+                            <input type="text" name="reg_first_name" placeholder="Nombres" />
+                            <input type="text" name="reg_last_name" placeholder="Apellidos" />
+                            <input type="password" name="reg_password" placeholder="Contraseña" />
+                            <input type="password" name="reg_c_password" placeholder="Confirmar contraseña" />
+                            <input type="submit" value="Registrar" name='register' />
+                            <p class="signup">
+                                Ya tienes una cuenta?
+                                <a href="#" onclick="toggleForm();">Iniciar sesion.</a>
+                            </p>
+                        </form>
+                    </div>
+                    <div class="imgBx"><img
+                            src="https://raw.githubusercontent.com/WoojinFive/CSS_Playground/master/Responsive%20Login%20and%20Registration%20Form/img2.jpg"
+                            alt="" /></div>
+                </div>
+            </div>
+        </section>
+    <script src='{% static "login.js" %}'></script>
+</body>
+
+</html>
