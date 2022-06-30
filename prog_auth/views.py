@@ -1,3 +1,4 @@
+from turtle import up
 from django.shortcuts import redirect, render
 from urllib import request
 from django.contrib.auth import login, logout, authenticate
@@ -32,6 +33,17 @@ def Login(request):
 
 def Home(request):
     users = User.objects.all()
+    if "delete" in request.POST:
+        user = User.objects.get(username=request.POST['delete'])
+        user.delete()
+        print("Usuario eliminado")
+    elif "update" in request.POST:
+        up_user = User.objects.get(username=request.user.username)
+        up_user.first_name=request.POST['new_first_name']
+        up_user.last_name=request.POST['new_last_name']
+        up_user.email=request.POST['new_email']
+        up_user.save()
+
     return render(request, 'home.html', {'users': users})
 
 def Logout(request):

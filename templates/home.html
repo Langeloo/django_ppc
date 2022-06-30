@@ -16,34 +16,45 @@
 </head>
 
 <body>
-    <h1>Home</h1>
-    <br>
-    <p>Nombre de usuario: {{ user.username }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Nombres: {{ user.first_name }}</p>
-    <p>Apellidos: {{ user.last_name }}</p>
-    <p>Contraseña: {{ user.password }}</p>
-    <a href="{% url 'prog_auth:logout' %}">Logout</a>
-    <br><br>
-    <table style="width:100%">
-        <thead>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
-            <th>Nombre de usuario</th>
-            <th>Contraseña</th>
-        </thead>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.last_name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.password }}</td>
-        </tr>
-        {% endfor %}
+    <form action="" method="post">
+        <h1>Home</h1>
+        <br>
+        <p>Nombre de usuario: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Nombres: {{ user.first_name }}</p>
+        <p>Apellidos: {{ user.last_name }}</p>
+        <p>Contraseña: {{ user.password }}</p>
+        <h3>Actualizar</h3>
+        <input type="text" name="new_first_name" placeholder="Nombres">
+        <input type="text" name="new_last_name" placeholder="Apellidos">
+        <input type="text" name="new_email" placeholder="Email">
+        <button type="submit" name="update">Actualizar</button>
+        <a href="{% url 'prog_auth:logout' %}">Logout</a>
+        <br><br>
 
-    </table>
+        {% csrf_token %}
+        <table style="width:100%">
+            <thead>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Nombre de usuario</th>
+                <th>Contraseña</th>
+                <th>Accion</th>
+            </thead>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.password }}</td>
+                <td><button value="{{ user.username }}" type="submit" name="delete">Eliminar</button></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </form>
 </body>
 
 </html>
